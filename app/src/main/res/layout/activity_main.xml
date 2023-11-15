@@ -23,6 +23,12 @@
                 android:layout_height="wrap_content"
                 android:text="log"/>
 
+            <Button
+                android:id="@+id/btn_main_hidden_entrance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="HiddenEntrance"/>
+
         </LinearLayout>
     </ScrollView>
 

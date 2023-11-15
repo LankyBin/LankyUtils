@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button mBtnMainLog;
+    private Button mBtnMainHiddenEntrance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initViews() {
         mBtnMainLog = findViewById(R.id.btn_main_log);
+        mBtnMainHiddenEntrance = (Button) findViewById(R.id.btn_main_hidden_entrance);
         mBtnMainLog.setOnClickListener(this);
+        mBtnMainHiddenEntrance.setOnClickListener(this);
     }
 
     @Override
@@ -28,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btn_main_log:
                 startActivity(new Intent(this, LogActivity.class));
+                break;
+            case R.id.btn_main_hidden_entrance:
+                startActivity(new Intent(this, HiddenEntranceActivity.class));
                 break;
         }
     }
