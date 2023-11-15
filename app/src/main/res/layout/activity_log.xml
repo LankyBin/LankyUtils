@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TAG:" />
+
+                <TextView
+                    android:id="@+id/tv_log_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" " />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Level:" />
+
+                <SeekBar
+                    android:id="@+id/sb_log_level"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:max="5"
+                    android:min="0"/>
+
+                <TextView
+                    android:id="@+id/tv_log_level"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="verbose"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="with detail:" />
+
+                <Switch
+                    android:id="@+id/switch_log_with_detail"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_log_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="测试"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
