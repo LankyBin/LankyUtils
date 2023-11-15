@@ -5,8 +5,14 @@
 ## 目前包含
 
 1. LankyLog
+   
+   具备level过滤、文件行号详情的日志工具类
 
-2. TODO
+2. HiddenEntrance
+   
+   以顺序按键的方式进入隐藏入口的工具类
+
+3. TODO
 
 # LankyUtils
 
