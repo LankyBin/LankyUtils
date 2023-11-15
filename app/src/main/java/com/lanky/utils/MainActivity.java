@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button mBtnMainLog;
     private Button mBtnMainHiddenEntrance;
+    private Button mBtnMainView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +23,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initViews() {
         mBtnMainLog = findViewById(R.id.btn_main_log);
         mBtnMainHiddenEntrance = (Button) findViewById(R.id.btn_main_hidden_entrance);
+        mBtnMainView = (Button) findViewById(R.id.btn_main_view);
+
         mBtnMainLog.setOnClickListener(this);
         mBtnMainHiddenEntrance.setOnClickListener(this);
+        mBtnMainView.setOnClickListener(this);
+
+        mBtnMainLog.setOnFocusChangeListener(ViewUtil.InteroperableOnFocusChangedListener);
+        mBtnMainLog.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
+        mBtnMainHiddenEntrance.setOnFocusChangeListener(ViewUtil.InteroperableOnFocusChangedListener);
+        mBtnMainHiddenEntrance.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
+        mBtnMainView.setOnFocusChangeListener(ViewUtil.InteroperableOnFocusChangedListener);
+        mBtnMainView.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
     }
 
     @Override
@@ -34,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_main_hidden_entrance:
                 startActivity(new Intent(this, HiddenEntranceActivity.class));
+                break;
+            case R.id.btn_main_view:
+                startActivity(new Intent(this, ViewActivity.class));
                 break;
         }
     }
