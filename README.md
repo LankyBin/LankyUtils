@@ -12,7 +12,11 @@
    
    以顺序按键的方式进入隐藏入口的工具类
 
-3. TODO
+3. ViewUtil
+   
+   焦点/鼠标指针交互变化（突出当前焦点View）
+
+4. TODO
 
 # LankyUtils
 
