@@ -25,7 +25,7 @@ public class LankyLog {
         StringBuilder buffer = new StringBuilder();
         if (mWithDetail) {
             buffer.append("[").append(mFileName).append(":")
-                    .append(mLineNumber).append("]-> ");
+                    .append(mLineNumber).append("]: ");
         }
         buffer.append(log);
         return buffer.toString();
