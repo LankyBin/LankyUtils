@@ -103,7 +103,7 @@ public class LankyLog {
         mWithDetail = need_detail;
     }
 
-    public static boolean getNeedDetail() {
+    public static boolean isWithDetail() {
         return mWithDetail;
     }
 }

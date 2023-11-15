@@ -16,7 +16,11 @@
    
    焦点/鼠标指针交互变化（突出当前焦点View）
 
-4. TODO
+4. SharedPreferenceUtil
+   
+   基础数据保存工具类
+
+5. TODO
 
 # LankyUtils
 

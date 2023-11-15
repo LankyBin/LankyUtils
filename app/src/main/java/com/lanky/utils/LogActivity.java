@@ -34,12 +34,14 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
         mSbLogLevel = (SeekBar) findViewById(R.id.sb_log_level);
         mTvLogLevel = (TextView) findViewById(R.id.tv_log_level);
-        mSbLogLevel.setProgress(LankyLog.getLEVEL());
         mSbLogLevel.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                LankyLog.setLEVEL(i);
-                syncLogLevelText();
+                if (LankyLog.getLEVEL() != i) {
+                    LankyLog.setLEVEL(i);
+                    SharedPreferenceUtil.getInstance(LogActivity.this).set("log_level", LankyLog.getLEVEL());
+                    syncLogLevelText();
+                }
             }
 
             @Override
@@ -54,11 +56,13 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         });
 
         mSwitchLogWithDetail = (Switch) findViewById(R.id.switch_log_with_detail);
-        mSwitchLogWithDetail.setChecked(LankyLog.getNeedDetail());
         mSwitchLogWithDetail.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                LankyLog.setWithDetail(b);
+                if (LankyLog.isWithDetail() != b) {
+                    LankyLog.setWithDetail(b);
+                    SharedPreferenceUtil.getInstance(LogActivity.this).set("log_with_detail", LankyLog.isWithDetail());
+                }
             }
         });
 
@@ -68,8 +72,17 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
     @Override
     protected void onResume() {
-        syncLogLevelText();
+        resumeSetting();
         super.onResume();
+    }
+
+    private void resumeSetting(){
+        int log_level = SharedPreferenceUtil.getInstance(LogActivity.this).get("log_level", LankyLog.getLEVEL());
+        mSbLogLevel.setProgress(log_level);
+        syncLogLevelText();
+
+        boolean log_with_detail = SharedPreferenceUtil.getInstance(LogActivity.this).get("log_with_detail", false);
+        mSwitchLogWithDetail.setChecked(log_with_detail);
     }
 
     private void syncLogLevelText() {
