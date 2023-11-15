@@ -22,14 +22,13 @@ public class LankyLog {
     private static int mLineNumber;//行数
 
     private static String createLog(String log) {
+        StringBuilder buffer = new StringBuilder();
         if (mWithDetail) {
-            StringBuilder buffer = new StringBuilder();
             buffer.append("[").append(mFileName).append(":")
                     .append(mLineNumber).append("]-> ");
-            buffer.append(log);
-            return buffer.toString();
         }
-        return "";
+        buffer.append(log);
+        return buffer.toString();
     }
 
     private static void getCodeInfo(StackTraceElement[] sElements) {
