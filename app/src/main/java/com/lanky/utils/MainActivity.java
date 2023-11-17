@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBtnMainLog;
     private Button mBtnMainHiddenEntrance;
     private Button mBtnMainView;
+    private Button mBtnMainToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +31,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnMainLog = findViewById(R.id.btn_main_log);
         mBtnMainHiddenEntrance = (Button) findViewById(R.id.btn_main_hidden_entrance);
         mBtnMainView = (Button) findViewById(R.id.btn_main_view);
+        mBtnMainToast = (Button) findViewById(R.id.btn_main_toast);
 
         mBtnMainLog.setOnClickListener(this);
         mBtnMainHiddenEntrance.setOnClickListener(this);
         mBtnMainView.setOnClickListener(this);
+        mBtnMainToast.setOnClickListener(this);
 
         mBtnMainLog.setOnFocusChangeListener(ViewUtil.InteroperableOnFocusChangedListener);
         mBtnMainLog.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
@@ -41,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnMainHiddenEntrance.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
         mBtnMainView.setOnFocusChangeListener(ViewUtil.InteroperableOnFocusChangedListener);
         mBtnMainView.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
+        mBtnMainToast.setOnFocusChangeListener(ViewUtil.InteroperableOnFocusChangedListener);
+        mBtnMainToast.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
 
         LankyLog.syncConfig(mContext);
     }
@@ -56,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_main_view:
                 startActivity(new Intent(this, ViewActivity.class));
+                break;
+            case R.id.btn_main_toast:
+                startActivity(new Intent(this, ToastActivity.class));
                 break;
         }
     }
