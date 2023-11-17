@@ -1,7 +1,10 @@
 package com.lanky.utils.log;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.lanky.utils.SharedPreferenceUtil;
 
 public class LankyLog {
     private static String mTag = "lanky";
@@ -13,8 +16,11 @@ public class LankyLog {
     public static final int ERROR = 4;
     public static final int CLOSE = 5;
 
-    public static int LEVEL = INFO;//默认Log的打印等级
+    private static int LEVEL = INFO;//默认Log的打印等级
     private static boolean mWithDetail = false;//是否需要Log详细信息
+
+    private static final String SP_KEY_LEVEL = "log_level";
+    private static final String SP_KEY_WITH_DETAIL = "log_with_detail";
 
     private static String mClassName;//类名
     private static String mFileName;//文件名
@@ -83,6 +89,23 @@ public class LankyLog {
         }
     }
 
+    /**
+     * 同步LankyLog配置信息
+     * @param context
+     */
+    public static void syncConfig(Context context){
+        SharedPreferenceUtil sp = SharedPreferenceUtil.getInstance(context);
+        LEVEL = sp.get(SP_KEY_LEVEL, LEVEL);
+        mWithDetail = sp.get(SP_KEY_WITH_DETAIL, mWithDetail);
+        Log.i(mTag, "LankyLog config:\nLEVEL:" + LEVEL + "\nWithDetail:" + mWithDetail);
+    }
+
+    private static void saveConfig(Context context) {
+        SharedPreferenceUtil sp = SharedPreferenceUtil.getInstance(context);
+        sp.set(SP_KEY_LEVEL, LEVEL);
+        sp.set(SP_KEY_WITH_DETAIL, mWithDetail);
+    }
+
     public static void setTag(String tag) {
         mTag = tag;
     }
@@ -91,6 +114,17 @@ public class LankyLog {
         return mTag;
     }
 
+    public static void setLEVEL(Context context, int level) {
+        LEVEL = level;
+        saveConfig(context);
+    }
+
+    /**
+     * 设置log等级
+     * 如果需要保存，请调用:
+     * setLEVEL(Context context, int level)
+     * @param level
+     */
     public static void setLEVEL(int level) {
         LEVEL = level;
     }
@@ -99,6 +133,17 @@ public class LankyLog {
         return LEVEL;
     }
 
+    public static void setWithDetail(Context context, boolean need_detail) {
+        mWithDetail = need_detail;
+        saveConfig(context);
+    }
+
+    /**
+     * 设置log是否包含文件名、行号等信息
+     * 如果需要保存，请调用:
+     * setWithDetail(Context context, boolean need_detail)
+     * @param need_detail
+     */
     public static void setWithDetail(boolean need_detail) {
         mWithDetail = need_detail;
     }

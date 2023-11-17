@@ -1,5 +1,6 @@
 package com.lanky.utils;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,7 +8,11 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lanky.utils.log.LankyLog;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private Context mContext;
 
     private Button mBtnMainLog;
     private Button mBtnMainHiddenEntrance;
@@ -17,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = MainActivity.this;
         initViews();
     }
 
@@ -35,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnMainHiddenEntrance.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
         mBtnMainView.setOnFocusChangeListener(ViewUtil.InteroperableOnFocusChangedListener);
         mBtnMainView.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
+
+        LankyLog.syncConfig(mContext);
     }
 
     @Override

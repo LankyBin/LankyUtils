@@ -1,5 +1,6 @@
 package com.lanky.utils;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import com.lanky.utils.log.LankyLog;
 
 public class LogActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Context mContext;
+
     private TextView mTvLogTag;
     private SeekBar mSbLogLevel;
     private TextView mTvLogLevel;
@@ -24,6 +27,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
+        mContext = LogActivity.this;
         initView();
     }
 
@@ -34,12 +38,13 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
         mSbLogLevel = (SeekBar) findViewById(R.id.sb_log_level);
         mTvLogLevel = (TextView) findViewById(R.id.tv_log_level);
+        mSbLogLevel.setProgress(LankyLog.getLEVEL());
+        syncLogLevelText();
         mSbLogLevel.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 if (LankyLog.getLEVEL() != i) {
-                    LankyLog.setLEVEL(i);
-                    SharedPreferenceUtil.getInstance(LogActivity.this).set("log_level", LankyLog.getLEVEL());
+                    LankyLog.setLEVEL(mContext, i);
                     syncLogLevelText();
                 }
             }
@@ -56,12 +61,12 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
         });
 
         mSwitchLogWithDetail = (Switch) findViewById(R.id.switch_log_with_detail);
+        mSwitchLogWithDetail.setChecked(LankyLog.isWithDetail());
         mSwitchLogWithDetail.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (LankyLog.isWithDetail() != b) {
-                    LankyLog.setWithDetail(b);
-                    SharedPreferenceUtil.getInstance(LogActivity.this).set("log_with_detail", LankyLog.isWithDetail());
+                    LankyLog.setWithDetail(mContext, b);
                 }
             }
         });
@@ -72,17 +77,7 @@ public class LogActivity extends AppCompatActivity implements View.OnClickListen
 
     @Override
     protected void onResume() {
-        resumeSetting();
         super.onResume();
-    }
-
-    private void resumeSetting(){
-        int log_level = SharedPreferenceUtil.getInstance(LogActivity.this).get("log_level", LankyLog.getLEVEL());
-        mSbLogLevel.setProgress(log_level);
-        syncLogLevelText();
-
-        boolean log_with_detail = SharedPreferenceUtil.getInstance(LogActivity.this).get("log_with_detail", false);
-        mSwitchLogWithDetail.setChecked(log_with_detail);
     }
 
     private void syncLogLevelText() {
