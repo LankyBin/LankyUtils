@@ -20,7 +20,11 @@
    
    基础数据保存工具类
 
-5. TODO
+5. LankyToast
+   
+   代替原生Toast，以解决叠加显示和重复显示的问题
+
+6. TODO
 
 # LankyUtils
 
@@ -32,7 +36,6 @@ Starting a Gradle Daemon, 4 busy and 2 incompatible Daemons could not be reused,
 
 BUILD SUCCESSFUL in 33s
 63 actionable tasks: 18 executed, 45 up-to-date
-
 ```
 
 ## 生成到：
