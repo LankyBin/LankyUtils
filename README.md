@@ -2,7 +2,7 @@
 
 这是一个用于日常开发所需的一些Android工具类
 
-## 目前包含
+## LankyUtils目前包含
 
 1. LankyLog
    
@@ -41,3 +41,18 @@ BUILD SUCCESSFUL in 33s
 ## 生成到：
 
 `LankyUtils/libs/com.lanky.utils.jar`
+
+# 调试实用代码
+
+获取当前方法运行时是被哪个文件的哪段代码调用：
+
+```
+    StackTraceElement[] sElements = new Throwable().getStackTrace();
+
+    String mFileName = sElements[1].getFileName();
+
+    int mLineNumber = sElements[1].getLineNumber();
+
+    Log.i("lanky", "This method called by: " + mFileName + ":" + mLineNumber);
+
+```
