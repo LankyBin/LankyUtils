@@ -47,12 +47,8 @@ BUILD SUCCESSFUL in 33s
 获取当前方法运行时是被哪个文件的哪段代码调用：
 
 ```
-    StackTraceElement[] sElements = new Throwable().getStackTrace();
-
-    String mFileName = sElements[1].getFileName();
-
-    int mLineNumber = sElements[1].getLineNumber();
-
-    Log.i("lanky", "This method called by: " + mFileName + ":" + mLineNumber);
-
+StackTraceElement[] sElements = new Throwable().getStackTrace();
+String mFileName = sElements[1].getFileName();
+int mLineNumber = sElements[1].getLineNumber();
+Log.i("lanky", "This method called by: " + mFileName + ":" + mLineNumber);
 ```
