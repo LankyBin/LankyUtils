@@ -97,7 +97,7 @@ public class LankyLog {
         SharedPreferenceUtil sp = SharedPreferenceUtil.getInstance(context);
         LEVEL = sp.get(SP_KEY_LEVEL, LEVEL);
         mWithDetail = sp.get(SP_KEY_WITH_DETAIL, mWithDetail);
-        Log.i(mTag, "LankyLog config:\nLEVEL:" + LEVEL + "\nWithDetail:" + mWithDetail);
+        Log.i(mTag, "LankyLog config:\n\tLEVEL:" + LEVEL + "\n\tWithDetail:" + mWithDetail);
     }
 
     private static void saveConfig(Context context) {

@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnMainView.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
         mBtnMainToast.setOnFocusChangeListener(ViewUtil.InteroperableOnFocusChangedListener);
         mBtnMainToast.setOnHoverListener(ViewUtil.InteroperableOnHoverListener);
-
-        LankyLog.syncConfig(mContext);
     }
 
     @Override
